@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample Web</title>
+        <link rel="stylesheet" href="/static/styles.css"/>
+    </head>
+
+    <body>
+        <nav>
+            <a href="/">Home</a> | <a href="/about">About Me</a>
+        </nav>
+        <div class="todo-container">
+            <h1>To do List</h1>
+            <div class="task-input">
+                <form method="POST">
+                    <input type="text" name="task" placeholder="Add task…" required/>
+                    <button>Submit</button>
+                </form>
+            </div>
+            <ul id=todo-list>
+                {% for task in tasks %}
+                <li>
+                    <span>{{ task }}</span>
+                    <button class="edit">📝</button>
+                    <div style="display: flex; gap: 5px;">
+                        <form method="POST" action="/delete" class="delete-form">
+                            <input type="hidden" name="task_to_delete" value="{{ task }}"/>
+                            <button class="delete">🗑️</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const list = document.getElementById('todo-list');
+
+                if(!list) return;
+
+                list.addEventListener('click', function(e){
+                    if(e.target.closest('button') || e.target.closest('form')) return;
+
+                    const li = e.target.closest('li');
+                    if(!li) return;
+
+                    li.classList.toggle('done');
+                });
+            });
+        </script>
+    </body>
+</html>
