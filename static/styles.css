@@ -61,11 +61,23 @@ span{
     font-size: 20px;
 }
 
+.edit-toggle{    
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+}
+
+
 .delete {
     cursor: pointer;
     border: none;
     border-radius: 5px;
     font-size: 20px;
+}
+
+.edit-toggle:hover{    
+    transform: scale(1.2);
 }
 
 .edit:hover{    
@@ -87,6 +99,11 @@ span{
 #todo-list li.done span{
     text-decoration: line-through;
     color: gray;
+}
+
+.done .task-text {
+  text-decoration: line-through;
+  color: gray;
 }
 
 /* CSS for About Me */
